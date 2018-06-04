@@ -35,7 +35,7 @@ class NotFound extends Component {
                   <ul>
                     <li><p>We cant find the page you are looking for.</p></li>
                     <li><p>Error code: 404.</p></li>
-                    <li><p>Return to the <NavLink to="/movies-socket">homepage</NavLink></p></li>
+                    <li><p>Return to the <NavLink to="/frontend-challange">homepage.</NavLink></p></li>
                   </ul>
                 </div>
               </td>

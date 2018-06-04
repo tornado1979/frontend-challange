@@ -87,8 +87,8 @@ class Home extends Component {
               </div>
               <p className="panel-text">{movie.overview}</p>
               <p className="view-more">
-                <button onClick={() => this.goto(`/movies-socket/${movie.id}`)}>
-                  more info
+                <button onClick={() => this.goto(`/frontend-challange/${movie.id}`)}>
+                  more info.
                 </button>
               </p>
             </div>

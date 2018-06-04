@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <header>
       <nav className="navBar">
-        <NavLink className="logo" to="/movies-socket">
+        <NavLink className="logo" to="/frontend-challange">
           <div className="logo" />
         </NavLink>
         <input id="menu-toggle" type="checkbox" />
@@ -17,7 +17,7 @@ export const Header = () => {
             activeStyle={
               { color: '#959E05' }
             }
-            to="/movies-socket"
+            to="/frontend-challange"
           >Movies
           </NavLink>
         </div>

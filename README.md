@@ -55,7 +55,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     }
     routing: {
       location: {
-        pathname: "/movies-socket",
+        pathname: "/movies-frontend-challange",
         search: "",
         hash: "",
         key: ""

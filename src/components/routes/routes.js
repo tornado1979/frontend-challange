@@ -15,11 +15,11 @@ export const Routes = () => {
       <Route
         component={Home}
         exact
-        path="/movies-socket"
+        path="/frontend-challange"
       />
       <Route
         component={MovieDetails}
-        path="/movies-socket/:movieId"
+        path="/frontend-challange/:movieId"
       />
       <Route component={NotFound} />
     </Switch>
