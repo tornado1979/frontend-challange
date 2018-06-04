@@ -1,0 +1,3 @@
+export const VIEW_MODE_LARGE = 'VIEW_MODE_LARGE'
+export const VIEW_MODE_MEDIUM = 'VIEW_MODE_MEDIUM'
+export const VIEW_MODE_SMALL = 'VIEW_MODE_SMALL'

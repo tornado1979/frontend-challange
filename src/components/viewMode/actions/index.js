@@ -1,0 +1,1 @@
+export const VIEW_MODE_CHANGE = 'VIEW_MODE_CHANGE'

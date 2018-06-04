@@ -1,36 +1,171 @@
-# Front-end Test Spec
-## User Story
-As a user, I would like to find relevant information about movies. Therefore, I expect a form, that helps me to search for a movie and provides relevant information in a result list.
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Sometimes I search for a movie, but I do not know the correct name and only remember some parts of the title or the author etc.
 
-## Requirements
+## Table of Contents
+- [About](#about)
+- [Workflow](#workflow)
+- [Technical Workflow](#technical-workflow)
+- [Folder Structure](#folder-structure)
+- [Run local](#run-local)
+- [Available Scripts](#available-scripts)
+  - [npm start](#npm-start)
+  - [npm test](#npm-test)
+  - [npm run build](#npm-run-build)
+- [youtube presentation](#youtube-presentation)
+- [Todo](#todo)
 
-* You use [this public movie API](https://sbot-fe-test.herokuapp.com/)
-* You decide which information to show in the result list
-* There should be a page showing all the details for a specific movie (should be shown when the user clicks on a movie in the list)
-* You __use react__ and any other library of your choice that best fits the needs for these requirements
-* You decide the look and appearance
-* You hand over a component (dependency) diagram
-* You can start whenever you like and send us the result once you are done. You bring the 'project' to a production standard (not more, not less). Do not spend more than 6 hours on this exercise.
 
-_(Optional: users want to be excited; which features, that go beyond the original scope of the challenge, can you imagine? If possible, pick 1 or 2 of them and implement it as well)_
+## About
+* It is a react + redux + web sockets + redux saga web app that fetches movies data from 'https://sbot-fe-test.herokuapp.com' and publish them to the end user. 
+* It makes a socket connection to the server andfetches movies data.
 
-## Just more Techinal requirements
-Our api provides an endpoint to list the movies by query:
+[a quick visual of the web-app](readme_imgs/movies-socket.gif)
 
-__GET [https://sbot-fe-test.herokuapp.com/api/v1/movies?query=whatever](https://sbot-fe-test.herokuapp.com/api/v1/movies?query=whatever)__
 
-Making a call to this endpoint brings a response with a listening_token in the body. You should use this token to listen on a specific socket.io channel, like:
-```javascript
-  socket.on(`movies.${listening_token}`, (data) => {
-    //...
-  });
+- Functionalities:
+  - movies search realtime.
+  - application connects with web sockets to the server and fetches data until it disconnects
+  - change movies view.
+  - movie details page
+
+* It is written in reactjs + reduxjs mainly and also:
+- redux-saga
+- socket.io-client
+- prop-types
+- lodash
+- sass
+- webpack
+- eslint with airbnb
+
+## Workflow
+
+* Init: user searches a movie on the text box and press enter or 'go'.
+* a socket connection between the client and server, is done and the movies downloading on the browser.
+* The data are consumed and the store is updated with the movies.
+* The state , after 'SEARCH_MOVIES_SUCCESS', looks like this:
+  ```
+  {
+    display: {
+      viewMode: "VIEW_MODE_LARGE" or "VIEW_MODE_MEDIUM" or "VIEW_MODE_SMALL"
+    },
+    movies: {
+      data: [{},{}],
+      errorMessage:null,
+      isLoading: false,
+    }
+    routing: {
+      location: {
+        pathname: "/movies-socket",
+        search: "",
+        hash: "",
+        key: ""
+      }
+    }
+  }
+  ```
+
+
+## Technical Workflow
+1. The app loads and the store is created and initialised, as long as 'redux-saga' runs and a .
+2. All the actions follow this procedure:
+ action -> actionCreator -> reducer -> update the state <- selector gets state data -> update the component
+2. For style i use custom sass. As for the webpack to convert the scss custom files to css, i added this snipet, on the webpack config file.
+  ```
+  {
+    test: /\.scss$/,
+    use: [{
+        loader: "style-loader" // creates style nodes from JS strings
+    }, {
+        loader: "css-loader" // translates CSS into CommonJS
+    }, {
+        loader: "sass-loader" // compiles Sass to CSS
+    }]
+  },
+  ```
+
+## Folder structure
+
+I have run `npm run eject`, in order to have better control over, 
+webpack, eslint etc.
+
+The structure of the project is this:
 ```
-## Send the result
+app/
+  assets/
+    img/
+      notFound/
+  components/
+    block/
+    footer/
+    header/
+    loader/
+    mainBlock/
+    percent/
+    routes/
+    search/
+    viewMode/
+  config/
+    app.js
+  data/
+    footerData.js
+    moviesRest.js
+    moviesSocket.js
+  helpers/
+    history.js
+  modules/
+    home/
+    movie/
+    notFound/
+  services/
+    search.js
+  App.js
+  App.scss
+  constant.js
+  index.js
+  rootReducers.js
+  sagas.js
+  store.js
+  .eslintrc
+  package.json
+  postcss.config.js
+  README.md
+```
 
-* Fork the project
-* Implement your solution
-* Open a Pull-Request to our Repository
+## Run local
 
-_Any question just open an issue for us_
+In order to run localhost you shoul:
+
+* download/clone the repo to a folder
+* execute npm install to install all the dependencies
+* npm run start
+* open your browser on http://localhost:3000/
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+
+### `npm run build`
+
+By executing `npm run build`, the build folder is creaded and insided the code 
+is minified.
+We can run the server by executing: `serve -s build`
+
+
+### `npm run eject`
+
+I have executed this script so, all the hidden files are now visible on the project.
+Some useful files are the webpack configuration, which i used to add the 
+pre-processor sass.
+
+## Todo
+
+* add unit tests
